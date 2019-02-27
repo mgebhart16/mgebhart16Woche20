@@ -19,18 +19,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Filterable {
+public class MainActivity extends AppCompatActivity {
     ListView listView;
     SearchView searchView;
     String[] splitedLine;
     List<Consumer> consumerList = new ArrayList<>();
     List<String> consumerNames = new ArrayList<>();
-
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayAdapter<String> arrayAdapter =
+         arrayAdapter =
                 new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, consumerNames);
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listView);
@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity implements Filterable {
         readCSV();
         listView.setAdapter(arrayAdapter);
 
-
+/*
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction()))
         {
             //String query = intent.getStringExtra(SearchManager.Query);
 
         }
+        */
     }
 
     public void readCSV() {
@@ -83,6 +84,25 @@ public class MainActivity extends AppCompatActivity implements Filterable {
 
     }
 
+    private void getConsumers(String query)
+    {
+        List<String> output = new ArrayList<>();
+        
+        if(searchView != null)
+        {
+            for (String item : consumerNames) {
+                if(item.toUpperCase().startsWith(query.toUpperCase())) {
+                    output.add(item);
+                }
+            }
+        }else
+        {
+            output=consumerNames;
+        }
+        arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, output);
+        listView.setAdapter(arrayAdapter);
+    }
+    /*
     Filter myFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -109,4 +129,5 @@ public class MainActivity extends AppCompatActivity implements Filterable {
     public Filter getFilter() {
         return null;
     }
+    */
 }
