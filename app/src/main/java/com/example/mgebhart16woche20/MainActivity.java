@@ -1,5 +1,7 @@
 package com.example.mgebhart16woche20;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -36,6 +38,13 @@ public class MainActivity extends AppCompatActivity implements Filterable {
         readCSV();
         listView.setAdapter(arrayAdapter);
 
+
+        Intent intent = getIntent();
+        if(Intent.ACTION_SEARCH.equals(intent.getAction()))
+        {
+            //String query = intent.getStringExtra(SearchManager.Query);
+
+        }
     }
 
     public void readCSV() {
@@ -74,6 +83,26 @@ public class MainActivity extends AppCompatActivity implements Filterable {
 
     }
 
+    Filter myFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults filterResults = new FilterResults();
+            if(constraint != null && consumerNames != null)
+            {
+                for(int i = 0; i < consumerNames.size(); i++)
+                {
+
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+        }
+
+    };
 
 
     @Override
