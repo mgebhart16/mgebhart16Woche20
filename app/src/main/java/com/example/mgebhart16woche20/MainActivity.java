@@ -35,9 +35,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listView);
         searchView = findViewById(R.id.searchView);
+
         readCSV();
         listView.setAdapter(arrayAdapter);
 
+
+
+        
 /*
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction()))
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
     private void getConsumers(String query)
     {
         List<String> output = new ArrayList<>();
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, output);
         listView.setAdapter(arrayAdapter);
     }
-    /*
+
     Filter myFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
