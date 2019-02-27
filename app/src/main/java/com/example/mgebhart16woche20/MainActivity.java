@@ -45,13 +45,15 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                List<String> output = new ArrayList<>();
+
                 for (String items: consumerNames) {
                     if(items.toUpperCase().startsWith(query.toUpperCase()))
                     {
-                        arrayAdapter.getFilter().filter(query);
+                        output.add(items);
+                        ArrayAdapter<String> filter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, output);
+                        listView.setAdapter(filter);
                     }
-
-
                 else
                 {
                     Toast.makeText(MainActivity.this, "No Match found", Toast.LENGTH_LONG);
