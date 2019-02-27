@@ -3,6 +3,8 @@ package com.example.mgebhart16woche20;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -15,7 +17,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Filterable {
     ListView listView;
     SearchView searchView;
     String[] splitedLine;
@@ -72,18 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setListView(List<Consumer> list)
-    {
 
-        /*
-        for(Consumer consumer : list)
-        {
-            String firstname = consumer.getFirstname();
-            String lastname = consumer.getLastname();
-            String person = (firstname + ", " + lastname);
-            listView.setText(person);
-        }
-        */
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
-
 }
