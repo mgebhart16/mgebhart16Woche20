@@ -12,6 +12,7 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if(consumerNames.contains(query))
+                {
+                    arrayAdapter.getFilter().filter(query);
+                }else
+                {
+                    Toast.makeText(MainActivity.this, "No Match found", Toast.LENGTH_LONG);
+                }
                 return false;
             }
 
