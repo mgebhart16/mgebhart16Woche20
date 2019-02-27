@@ -45,13 +45,17 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(consumerNames.contains(query))
-                {
-                    arrayAdapter.getFilter().filter(query);
-                }else
+                for (String items: consumerNames) {
+                    if(items.toUpperCase().startsWith(query.toUpperCase()))
+                    {
+                        arrayAdapter.getFilter().filter(query);
+                    }
+
+
+                else
                 {
                     Toast.makeText(MainActivity.this, "No Match found", Toast.LENGTH_LONG);
-                }
+                }}
                 return false;
             }
 
