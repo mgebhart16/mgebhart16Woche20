@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         arrayAdapter =
-                new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, consumerNames);
+        arrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, consumerNames);
+
         setContentView(R.layout.activity_main);
         listView = findViewById(R.id.listView);
         searchView = findViewById(R.id.searchView);
@@ -39,9 +41,19 @@ public class MainActivity extends AppCompatActivity {
         readCSV();
         listView.setAdapter(arrayAdapter);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
 
-        
 /*
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction()))
@@ -51,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
         */
     }
+
 
     public void readCSV() {
         int id = 0;
